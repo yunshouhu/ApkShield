@@ -59,34 +59,42 @@ def extractDex(src):
 	zipFile = zipfile.ZipFile(src)
 	dstpath = '.\\out\\assets\\'
 	zipFile.extract('classes.dex',dstpath)
-	shutil.copy(dstpath + 'classes.dex',dstpath + 'ex07.apk')
+	
+	#shutil.copy(dstpath + 'classes.dex',dstpath + 'ex07.apk')
+	shutil.copy(src,dstpath + 'ex07.apk')
 		
 #===================================================================================	
-print 'Begin decypt'
-print 'Begin Shield'
-args = ""
-for i in range(1,len(sys.argv)):
-	args += sys.argv[i]
-print args
-src = args
-#解开apk
-decypt(args)
-#deal xml file
-parseXml()
-#
-copyFile(src)
-#
-extractDex(src)
-#apk打包
-encypt(args)
-#apk签名
-sign(args)
 
-shutil.rmtree('.\\out')	
+if __name__ == '__main__':
 
-#install(src)
+	if len(sys.argv) != 2:
+		print("input argment is error ")
+		sys.exit(-1)
+	print 'Begin decypt'
+	print 'Begin Shield'
+	args = ""
+	for i in range(1,len(sys.argv)):
+		args += sys.argv[i]
+	print args
+	src = args
+	#解开apk
+	decypt(args)
+	#deal xml file
+	parseXml()
+	#
+	copyFile(src)
+	#
+	extractDex(src)
+	#apk打包
+	encypt(args)
+	#apk签名
+	sign(args)
 
-print 'End decypt'
-print 'End Shield'
+	shutil.rmtree('.\\out')	
+
+	#install(src)
+	print 'End decypt'
+	print 'End Shield'
+	sys.exit(0)
 
 

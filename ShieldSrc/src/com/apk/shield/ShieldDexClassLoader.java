@@ -12,7 +12,11 @@ import dalvik.system.PathClassLoader;
 
 public class ShieldDexClassLoader extends DexClassLoader
 {
+	private static final String TAG = "ShieldDexClassLoader";
+	
 	PathClassLoader mParent = null;
+	
+	
 	public ShieldDexClassLoader(
 			String dexPath ,
 			String optimizedDirectory ,
@@ -20,14 +24,14 @@ public class ShieldDexClassLoader extends DexClassLoader
 			PathClassLoader parent )
 	{		
 		super( dexPath , optimizedDirectory , libraryPath , parent );
-		// TODO Auto-generated constructor stub
+		 
 	}
 
 	@Override
 	protected Class<?> findClass(
 			String name ) throws ClassNotFoundException
 	{
-		// TODO Auto-generated method stub
+		 
 		return super.findClass( name );
 	}
 
@@ -35,8 +39,8 @@ public class ShieldDexClassLoader extends DexClassLoader
 	public String findLibrary(
 			String name )
 	{
-		// TODO Auto-generated method stub
-		Log.d( "MM" , "ShieldDexClassLoader findLibrary name " + name );
+		 
+		Log.d(TAG, "ShieldDexClassLoader findLibrary name " + name );
 		String libpath = super.findLibrary( name );
 		if(TextUtils.isEmpty( libpath ))
 		{
@@ -49,8 +53,8 @@ public class ShieldDexClassLoader extends DexClassLoader
 	protected URL findResource(
 			String name )
 	{
-		// TODO Auto-generated method stub
-		Log.d( "MM" , "ShieldDexClassLoader findResource name " + name );
+		 
+		Log.d(TAG, "ShieldDexClassLoader findResource name " + name );
 		return super.findResource( name );
 	}
 
@@ -58,8 +62,8 @@ public class ShieldDexClassLoader extends DexClassLoader
 	protected Enumeration<URL> findResources(
 			String name )
 	{
-		// TODO Auto-generated method stub
-		Log.d( "MM" , "ShieldDexClassLoader findResources name " + name );
+		 
+		Log.d(TAG , "ShieldDexClassLoader findResources name " + name );
 		return super.findResources( name );
 	}
 
@@ -67,15 +71,15 @@ public class ShieldDexClassLoader extends DexClassLoader
 	protected synchronized Package getPackage(
 			String name )
 	{
-		// TODO Auto-generated method stub
-		Log.d( "MM" , "ShieldDexClassLoader getPackage name " + name );
+		 
+		Log.d( TAG , "ShieldDexClassLoader getPackage name " + name );
 		return super.getPackage( name );
 	}
 
 	@Override
 	public String toString()
 	{
-		// TODO Auto-generated method stub
+		 
 		return super.toString();
 	}
 	

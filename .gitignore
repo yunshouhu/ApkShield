@@ -1,0 +1,13 @@
+*.exe
+*.vcxproj
+*.filters
+*.iml
+*.user
+*.class
+/java/.idea/
+/java/target
+/cpp/algorithmofday/Debug/
+/cpp/algorithmofday/Release/
+/Release/
+/Debug/
+

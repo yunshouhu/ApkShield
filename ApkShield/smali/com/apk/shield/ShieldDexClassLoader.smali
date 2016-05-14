@@ -3,6 +3,10 @@
 .source "ShieldDexClassLoader.java"
 
 
+# static fields
+.field private static final TAG:Ljava/lang/String; = "ShieldDexClassLoader"
+
+
 # instance fields
 .field mParent:Ldalvik/system/PathClassLoader;
 
@@ -16,15 +20,15 @@
     .param p4, "parent"    # Ldalvik/system/PathClassLoader;
 
     .prologue
-    .line 22
+    .line 26
     invoke-direct {p0, p1, p2, p3, p4}, Ldalvik/system/DexClassLoader;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V
 
-    .line 15
+    .line 17
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/apk/shield/ShieldDexClassLoader;->mParent:Ldalvik/system/PathClassLoader;
 
-    .line 24
+    .line 28
     return-void
 .end method
 
@@ -50,7 +54,7 @@
     .end annotation
 
     .prologue
-    .line 31
+    .line 35
     invoke-super {p0, p1}, Ldalvik/system/DexClassLoader;->findClass(Ljava/lang/String;)Ljava/lang/Class;
 
     move-result-object v0
@@ -63,8 +67,8 @@
     .param p1, "name"    # Ljava/lang/String;
 
     .prologue
-    .line 39
-    const-string v1, "MM"
+    .line 43
+    const-string v1, "ShieldDexClassLoader"
 
     new-instance v2, Ljava/lang/StringBuilder;
 
@@ -82,12 +86,12 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 40
+    .line 44
     invoke-super {p0, p1}, Ldalvik/system/DexClassLoader;->findLibrary(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 41
+    .line 45
     .local v0, "libpath":Ljava/lang/String;
     invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
@@ -95,7 +99,7 @@
 
     if-eqz v1, :cond_0
 
-    .line 43
+    .line 47
     invoke-virtual {p0}, Lcom/apk/shield/ShieldDexClassLoader;->getParent()Ljava/lang/ClassLoader;
 
     move-result-object v1
@@ -106,7 +110,7 @@
 
     move-result-object v0
 
-    .line 45
+    .line 49
     :cond_0
     return-object v0
 .end method
@@ -116,8 +120,8 @@
     .param p1, "name"    # Ljava/lang/String;
 
     .prologue
-    .line 53
-    const-string v0, "MM"
+    .line 57
+    const-string v0, "ShieldDexClassLoader"
 
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -135,7 +139,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 54
+    .line 58
     invoke-super {p0, p1}, Ldalvik/system/DexClassLoader;->findResource(Ljava/lang/String;)Ljava/net/URL;
 
     move-result-object v0
@@ -159,8 +163,8 @@
     .end annotation
 
     .prologue
-    .line 62
-    const-string v0, "MM"
+    .line 66
+    const-string v0, "ShieldDexClassLoader"
 
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -178,7 +182,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 63
+    .line 67
     invoke-super {p0, p1}, Ldalvik/system/DexClassLoader;->findResources(Ljava/lang/String;)Ljava/util/Enumeration;
 
     move-result-object v0
@@ -191,11 +195,11 @@
     .param p1, "name"    # Ljava/lang/String;
 
     .prologue
-    .line 71
+    .line 75
     monitor-enter p0
 
     :try_start_0
-    const-string v0, "MM"
+    const-string v0, "ShieldDexClassLoader"
 
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -213,7 +217,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 72
+    .line 76
     invoke-super {p0, p1}, Ldalvik/system/DexClassLoader;->getPackage(Ljava/lang/String;)Ljava/lang/Package;
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -224,7 +228,7 @@
 
     return-object v0
 
-    .line 71
+    .line 75
     :catchall_0
     move-exception v0
 
@@ -237,7 +241,7 @@
     .locals 1
 
     .prologue
-    .line 79
+    .line 83
     invoke-super {p0}, Ldalvik/system/DexClassLoader;->toString()Ljava/lang/String;
 
     move-result-object v0

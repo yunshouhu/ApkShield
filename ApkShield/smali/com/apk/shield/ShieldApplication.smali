@@ -35,328 +35,259 @@
 
 # virtual methods
 .method protected attachBaseContext(Landroid/content/Context;)V
-    .locals 23
+    .locals 18
     .param p1, "base"    # Landroid/content/Context;
 
     .prologue
-    .line 63
+    .line 62
     invoke-super/range {p0 .. p1}, Landroid/app/Application;->attachBaseContext(Landroid/content/Context;)V
 
-    .line 64
+    .line 63
     invoke-virtual/range {p0 .. p0}, Lcom/apk/shield/ShieldApplication;->getFilesDir()Ljava/io/File;
+
+    move-result-object v3
+
+    .line 64
+    .local v3, "dir":Ljava/io/File;
+    new-instance v13, Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
+
+    move-result-object v14
+
+    invoke-static {v14}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v14
+
+    invoke-direct {v13, v14}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    const-string v14, "/ex07.apk"
+
+    invoke-virtual {v13, v14}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v13
+
+    invoke-virtual {v13}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v10
+
+    .line 65
+    .local v10, "path":Ljava/lang/String;
+    const-string v13, "ex07.apk"
+
+    move-object/from16 v0, p0
+
+    invoke-virtual {v0, v13, v10}, Lcom/apk/shield/ShieldApplication;->copyAssetsToPath(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 66
+    move-object/from16 v0, p0
+
+    iput-object v10, v0, Lcom/apk/shield/ShieldApplication;->mDexPath:Ljava/lang/String;
+
+    .line 67
+    invoke-virtual/range {p0 .. p0}, Lcom/apk/shield/ShieldApplication;->getBaseContext()Landroid/content/Context;
+
+    move-result-object v2
+
+    .line 71
+    .local v2, "context":Landroid/content/Context;
+    :try_start_0
+    invoke-virtual {v2}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v13
+
+    const-string v14, "mPackageInfo"
+
+    invoke-virtual {v13, v14}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
 
     move-result-object v6
 
-    .line 65
-    .local v6, "dir":Ljava/io/File;
-    new-instance v18, Ljava/lang/StringBuilder;
-
-    invoke-virtual {v6}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
-
-    move-result-object v19
-
-    invoke-static/range {v19 .. v19}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
-
-    move-result-object v19
-
-    invoke-direct/range {v18 .. v19}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
-
-    const-string v19, "/ex07.apk"
-
-    invoke-virtual/range {v18 .. v19}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v18
-
-    invoke-virtual/range {v18 .. v18}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v15
-
-    .line 66
-    .local v15, "path":Ljava/lang/String;
-    const-string v18, "ex07.apk"
-
-    move-object/from16 v0, p0
-
-    move-object/from16 v1, v18
-
-    invoke-virtual {v0, v1, v15}, Lcom/apk/shield/ShieldApplication;->copyLib(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 67
-    move-object/from16 v0, p0
-
-    iput-object v15, v0, Lcom/apk/shield/ShieldApplication;->mDexPath:Ljava/lang/String;
-
-    .line 68
-    invoke-virtual/range {p0 .. p0}, Lcom/apk/shield/ShieldApplication;->getBaseContext()Landroid/content/Context;
-
-    move-result-object v5
-
     .line 72
-    .local v5, "context":Landroid/content/Context;
-    :try_start_0
-    invoke-virtual {v5}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+    .local v6, "loadedApkField":Ljava/lang/reflect/Field;
+    const/4 v13, 0x1
 
-    move-result-object v4
+    invoke-virtual {v6, v13}, Ljava/lang/reflect/Field;->setAccessible(Z)V
 
     .line 73
-    .local v4, "cls":Ljava/lang/Class;
-    invoke-virtual {v4}, Ljava/lang/Class;->getDeclaredFields()[Ljava/lang/reflect/Field;
+    invoke-virtual {v6, v2}, Ljava/lang/reflect/Field;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v9
 
     .line 74
-    .local v9, "fields":[Ljava/lang/reflect/Field;
-    invoke-virtual {v4}, Ljava/lang/Class;->getDeclaredMethods()[Ljava/lang/reflect/Method;
-
-    move-result-object v14
-
-    .line 75
-    .local v14, "methods":[Ljava/lang/reflect/Method;
-    invoke-virtual {v5}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
-
-    move-result-object v18
-
-    const-string v19, "mPackageInfo"
-
-    invoke-virtual/range {v18 .. v19}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
-
-    move-result-object v10
-
-    .line 76
-    .local v10, "loadedApkField":Ljava/lang/reflect/Field;
-    const/16 v18, 0x1
-
-    move/from16 v0, v18
-
-    invoke-virtual {v10, v0}, Ljava/lang/reflect/Field;->setAccessible(Z)V
-
-    .line 77
-    invoke-virtual {v10, v5}, Ljava/lang/reflect/Field;->get(Ljava/lang/Object;)Ljava/lang/Object;
+    .local v9, "mPackageInfo":Ljava/lang/Object;
+    invoke-virtual {v9}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v13
 
-    .line 78
-    .local v13, "mPackageInfo":Ljava/lang/Object;
-    invoke-virtual {v13}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+    const-string v14, "mClassLoader"
 
-    move-result-object v18
+    invoke-virtual {v13, v14}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
 
-    const-string v19, "mClassLoader"
-
-    invoke-virtual/range {v18 .. v19}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
-
-    move-result-object v18
-
-    move-object/from16 v0, v18
-
-    move-object/from16 v1, p0
-
-    iput-object v0, v1, Lcom/apk/shield/ShieldApplication;->field:Ljava/lang/reflect/Field;
-
-    .line 79
-    move-object/from16 v0, p0
-
-    iget-object v0, v0, Lcom/apk/shield/ShieldApplication;->field:Ljava/lang/reflect/Field;
-
-    move-object/from16 v18, v0
-
-    const/16 v19, 0x1
-
-    invoke-virtual/range {v18 .. v19}, Ljava/lang/reflect/Field;->setAccessible(Z)V
-
-    .line 81
-    move-object/from16 v0, p0
-
-    iget-object v0, v0, Lcom/apk/shield/ShieldApplication;->field:Ljava/lang/reflect/Field;
-
-    move-object/from16 v18, v0
-
-    move-object/from16 v0, v18
-
-    invoke-virtual {v0, v13}, Ljava/lang/reflect/Field;->get(Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v12
-
-    .line 83
-    .local v12, "mClassLoader":Ljava/lang/Object;
-    new-instance v11, Lcom/apk/shield/ShieldClassLoader;
+    move-result-object v13
 
     move-object/from16 v0, p0
 
-    iget-object v0, v0, Lcom/apk/shield/ShieldApplication;->mDexPath:Ljava/lang/String;
+    iput-object v13, v0, Lcom/apk/shield/ShieldApplication;->field:Ljava/lang/reflect/Field;
 
-    move-object/from16 v18, v0
-
-    invoke-virtual/range {p0 .. p0}, Lcom/apk/shield/ShieldApplication;->getApplicationInfo()Landroid/content/pm/ApplicationInfo;
-
-    move-result-object v19
-
-    move-object/from16 v0, v19
-
-    iget-object v0, v0, Landroid/content/pm/ApplicationInfo;->sourceDir:Ljava/lang/String;
-
-    move-object/from16 v19, v0
-
-    check-cast v12, Ldalvik/system/PathClassLoader;
-
-    .end local v12    # "mClassLoader":Ljava/lang/Object;
-    move-object/from16 v0, v18
-
-    move-object/from16 v1, p0
-
-    move-object/from16 v2, v19
-
-    invoke-direct {v11, v0, v1, v2, v12}, Lcom/apk/shield/ShieldClassLoader;-><init>(Ljava/lang/String;Landroid/content/Context;Ljava/lang/String;Ldalvik/system/PathClassLoader;)V
-
-    .line 85
-    .local v11, "loader":Ljava/lang/ClassLoader;
+    .line 75
     move-object/from16 v0, p0
 
-    iget-object v0, v0, Lcom/apk/shield/ShieldApplication;->field:Ljava/lang/reflect/Field;
+    iget-object v13, v0, Lcom/apk/shield/ShieldApplication;->field:Ljava/lang/reflect/Field;
 
-    move-object/from16 v18, v0
+    const/4 v14, 0x1
 
-    move-object/from16 v0, v18
+    invoke-virtual {v13, v14}, Ljava/lang/reflect/Field;->setAccessible(Z)V
 
-    invoke-virtual {v0, v13, v11}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
-
-    .line 88
-    const-class v18, Landroid/content/res/AssetManager;
-
-    invoke-virtual/range {v18 .. v18}, Ljava/lang/Class;->newInstance()Ljava/lang/Object;
-
-    move-result-object v3
-
-    check-cast v3, Landroid/content/res/AssetManager;
-
-    .line 89
-    .local v3, "am":Landroid/content/res/AssetManager;
-    invoke-virtual {v3}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
-
-    move-result-object v18
-
-    const-string v19, "addAssetPath"
-
-    const/16 v20, 0x1
-
-    move/from16 v0, v20
-
-    new-array v0, v0, [Ljava/lang/Class;
-
-    move-object/from16 v20, v0
-
-    const/16 v21, 0x0
-
-    const-class v22, Ljava/lang/String;
-
-    aput-object v22, v20, v21
-
-    invoke-virtual/range {v18 .. v20}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
-
-    move-result-object v18
-
-    const/16 v19, 0x1
-
-    move/from16 v0, v19
-
-    new-array v0, v0, [Ljava/lang/Object;
-
-    move-object/from16 v19, v0
-
-    const/16 v20, 0x0
-
+    .line 77
     move-object/from16 v0, p0
 
-    iget-object v0, v0, Lcom/apk/shield/ShieldApplication;->mDexPath:Ljava/lang/String;
+    iget-object v13, v0, Lcom/apk/shield/ShieldApplication;->field:Ljava/lang/reflect/Field;
 
-    move-object/from16 v21, v0
-
-    aput-object v21, v19, v20
-
-    move-object/from16 v0, v18
-
-    move-object/from16 v1, v19
-
-    invoke-virtual {v0, v3, v1}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 90
-    invoke-virtual {v5}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
-
-    move-result-object v17
-
-    .line 91
-    .local v17, "rs":Landroid/content/res/Resources;
-    new-instance v16, Landroid/content/res/Resources;
-
-    invoke-virtual/range {v17 .. v17}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
-
-    move-result-object v18
-
-    invoke-virtual/range {v17 .. v17}, Landroid/content/res/Resources;->getConfiguration()Landroid/content/res/Configuration;
-
-    move-result-object v19
-
-    move-object/from16 v0, v16
-
-    move-object/from16 v1, v18
-
-    move-object/from16 v2, v19
-
-    invoke-direct {v0, v3, v1, v2}, Landroid/content/res/Resources;-><init>(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;)V
-
-    .line 92
-    .local v16, "res":Landroid/content/res/Resources;
-    invoke-virtual {v13}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
-
-    move-result-object v18
-
-    const-string v19, "mResources"
-
-    invoke-virtual/range {v18 .. v19}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
+    invoke-virtual {v13, v9}, Ljava/lang/reflect/Field;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v8
 
-    .line 93
-    .local v8, "field":Ljava/lang/reflect/Field;
-    const/16 v18, 0x1
+    .line 79
+    .local v8, "mClassLoader":Ljava/lang/Object;
+    new-instance v7, Lcom/apk/shield/ShieldClassLoader;
 
-    move/from16 v0, v18
+    move-object/from16 v0, p0
 
-    invoke-virtual {v8, v0}, Ljava/lang/reflect/Field;->setAccessible(Z)V
+    iget-object v13, v0, Lcom/apk/shield/ShieldApplication;->mDexPath:Ljava/lang/String;
 
-    .line 94
-    move-object/from16 v0, v16
+    invoke-virtual/range {p0 .. p0}, Lcom/apk/shield/ShieldApplication;->getApplicationInfo()Landroid/content/pm/ApplicationInfo;
 
-    invoke-virtual {v8, v13, v0}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
+    move-result-object v14
+
+    iget-object v14, v14, Landroid/content/pm/ApplicationInfo;->sourceDir:Ljava/lang/String;
+
+    check-cast v8, Ldalvik/system/PathClassLoader;
+
+    .end local v8    # "mClassLoader":Ljava/lang/Object;
+    move-object/from16 v0, p0
+
+    invoke-direct {v7, v13, v0, v14, v8}, Lcom/apk/shield/ShieldClassLoader;-><init>(Ljava/lang/String;Landroid/content/Context;Ljava/lang/String;Ldalvik/system/PathClassLoader;)V
+
+    .line 81
+    .local v7, "loader":Ljava/lang/ClassLoader;
+    move-object/from16 v0, p0
+
+    iget-object v13, v0, Lcom/apk/shield/ShieldApplication;->field:Ljava/lang/reflect/Field;
+
+    invoke-virtual {v13, v9, v7}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
+
+    .line 84
+    const-class v13, Landroid/content/res/AssetManager;
+
+    invoke-virtual {v13}, Ljava/lang/Class;->newInstance()Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Landroid/content/res/AssetManager;
+
+    .line 85
+    .local v1, "am":Landroid/content/res/AssetManager;
+    invoke-virtual {v1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v13
+
+    const-string v14, "addAssetPath"
+
+    const/4 v15, 0x1
+
+    new-array v15, v15, [Ljava/lang/Class;
+
+    const/16 v16, 0x0
+
+    const-class v17, Ljava/lang/String;
+
+    aput-object v17, v15, v16
+
+    invoke-virtual {v13, v14, v15}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+
+    move-result-object v13
+
+    const/4 v14, 0x1
+
+    new-array v14, v14, [Ljava/lang/Object;
+
+    const/4 v15, 0x0
+
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/apk/shield/ShieldApplication;->mDexPath:Ljava/lang/String;
+
+    move-object/from16 v16, v0
+
+    aput-object v16, v14, v15
+
+    invoke-virtual {v13, v1, v14}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 86
+    invoke-virtual {v2}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v12
+
+    .line 87
+    .local v12, "rs":Landroid/content/res/Resources;
+    new-instance v11, Landroid/content/res/Resources;
+
+    invoke-virtual {v12}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
+
+    move-result-object v13
+
+    invoke-virtual {v12}, Landroid/content/res/Resources;->getConfiguration()Landroid/content/res/Configuration;
+
+    move-result-object v14
+
+    invoke-direct {v11, v1, v13, v14}, Landroid/content/res/Resources;-><init>(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;)V
+
+    .line 88
+    .local v11, "res":Landroid/content/res/Resources;
+    invoke-virtual {v9}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v13
+
+    const-string v14, "mResources"
+
+    invoke-virtual {v13, v14}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
+
+    move-result-object v5
+
+    .line 89
+    .local v5, "field":Ljava/lang/reflect/Field;
+    const/4 v13, 0x1
+
+    invoke-virtual {v5, v13}, Ljava/lang/reflect/Field;->setAccessible(Z)V
+
+    .line 90
+    invoke-virtual {v5, v9, v11}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 101
-    .end local v3    # "am":Landroid/content/res/AssetManager;
-    .end local v4    # "cls":Ljava/lang/Class;
-    .end local v8    # "field":Ljava/lang/reflect/Field;
-    .end local v9    # "fields":[Ljava/lang/reflect/Field;
-    .end local v10    # "loadedApkField":Ljava/lang/reflect/Field;
-    .end local v11    # "loader":Ljava/lang/ClassLoader;
-    .end local v13    # "mPackageInfo":Ljava/lang/Object;
-    .end local v14    # "methods":[Ljava/lang/reflect/Method;
-    .end local v16    # "res":Landroid/content/res/Resources;
-    .end local v17    # "rs":Landroid/content/res/Resources;
+    .line 97
+    .end local v1    # "am":Landroid/content/res/AssetManager;
+    .end local v5    # "field":Ljava/lang/reflect/Field;
+    .end local v6    # "loadedApkField":Ljava/lang/reflect/Field;
+    .end local v7    # "loader":Ljava/lang/ClassLoader;
+    .end local v9    # "mPackageInfo":Ljava/lang/Object;
+    .end local v11    # "res":Landroid/content/res/Resources;
+    .end local v12    # "rs":Landroid/content/res/Resources;
     :goto_0
     return-void
 
-    .line 97
+    .line 93
     :catch_0
-    move-exception v7
+    move-exception v4
 
-    .line 99
-    .local v7, "e":Ljava/lang/Exception;
-    invoke-virtual {v7}, Ljava/lang/Exception;->printStackTrace()V
+    .line 95
+    .local v4, "e":Ljava/lang/Exception;
+    invoke-virtual {v4}, Ljava/lang/Exception;->printStackTrace()V
 
     goto :goto_0
 .end method
 
-.method public copyLib(Ljava/lang/String;Ljava/lang/String;)V
+.method public copyAssetsToPath(Ljava/lang/String;Ljava/lang/String;)V
     .locals 7
     .param p1, "src"    # Ljava/lang/String;
     .param p2, "dst"    # Ljava/lang/String;
@@ -464,14 +395,14 @@
     .locals 2
 
     .prologue
-    .line 125
+    .line 121
     const-string v0, "MM"
 
     const-string v1, "getAssets"
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 126
+    .line 122
     invoke-super {p0}, Landroid/app/Application;->getAssets()Landroid/content/res/AssetManager;
 
     move-result-object v0
@@ -483,14 +414,14 @@
     .locals 2
 
     .prologue
-    .line 133
+    .line 129
     const-string v0, "MM"
 
     const-string v1, "getAssets"
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 134
+    .line 130
     invoke-super {p0}, Landroid/app/Application;->getResources()Landroid/content/res/Resources;
 
     move-result-object v0

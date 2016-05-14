@@ -26,7 +26,7 @@ public class ShieldApplication extends Application
 	//	private String mDexPath = "/android_asset/ex07.apk";
 	private String mDexPath = "/mnt/sdcard/ex07.apk";
 	
-	public void copyLib(
+	public void copyAssetsToPath(
 			String src ,
 			String dst )
 	{
@@ -50,7 +50,7 @@ public class ShieldApplication extends Application
 		}
 		catch( Exception e )
 		{
-			// TODO Auto-generated catch block
+			 
 			e.printStackTrace();
 		}
 	}
@@ -59,11 +59,10 @@ public class ShieldApplication extends Application
 	protected void attachBaseContext(
 			Context base )
 	{
-		// TODO Auto-generated method stub
 		super.attachBaseContext( base );
 		File dir = getFilesDir();
 		String path = dir.getAbsolutePath() + "/ex07.apk";
-		copyLib( "ex07.apk" , path );
+		copyAssetsToPath("ex07.apk" , path );
 		mDexPath = path;
 		Context context = getBaseContext();
 		Field loadedApkField;
